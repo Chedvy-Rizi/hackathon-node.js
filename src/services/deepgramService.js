@@ -26,7 +26,18 @@ const setupDeepgram = (onTranscript) => {
             onTranscript(transcript);
         }
     });
+// 1. האם המפתח בכלל נטען?
+console.log("Deepgram Key check:", process.env.DEEPGRAM_API_KEY ? "EXISTS" : "MISSING");
 
+connection.on("close", (event) => {
+    // אירוע הסגירה יספר לנו הכל
+    console.log(`❌ החיבור נסגר! קוד: ${event.code}, סיבה: ${event.reason}`);
+});
+
+connection.on("error", (err) => {
+    // הדפסה מפורטת של השגיאה
+    console.error("❌ Deepgram Error Detail:", JSON.stringify(err, null, 2));
+});
     connection.on("error", (err) => {
         console.error("❌ שגיאה ב-Deepgram:", err);
     });
