@@ -7,10 +7,12 @@ const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const setupDeepgram = (onTranscript) => {
     // פתיחת חיבור Live ל-Deepgram
     const connection = deepgram.listen.live({
-        model: "nova-2",      // המודל הכי מהיר ומדויק שלהם
-        language: "he",        // עברית (או 'en-US' לפי הצורך)
-        smart_format: true,    // מוסיף סימני פיסוק אוטומטית
-        interim_results: true, // מקבלים תוצאות תוך כדי דיבור
+        model: "nova-2",
+        language: "he",
+        smart_format: true,
+        interim_results: true,
+        encoding: "linear16",
+        sample_rate: 16000
     });
 
     connection.on("open", () => {
