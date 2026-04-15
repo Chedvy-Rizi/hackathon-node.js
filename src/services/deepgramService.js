@@ -7,13 +7,14 @@ const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 const setupDeepgram = (onTranscript) => {
     // פתיחת חיבור Live ל-Deepgram
     const connection = deepgram.listen.live({
-        model: "nova-2",
-        language: "he",
-        smart_format: true,
-        interim_results: true,
-        encoding: "linear16",
-        sample_rate: 16000
-    });
+    model: "nova-2",
+    language: "he",
+    smart_format: true,
+    // הוספת הכתובת המאובטחת במידה והענן חוסם את ברירת המחדל
+    url: "wss://api.deepgram.com/v1/listen",
+    encoding: "linear16", // או 'webm-opus' אם זה מה שהדפדפן שולח
+    sample_rate: 16000
+});
 
     connection.on("open", () => {
         console.log("✅ חיבור ל-Deepgram נפתח בהצלחה");
