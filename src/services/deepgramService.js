@@ -5,12 +5,10 @@ const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 
 //האם לשים אופציה של בחירת שפה???
 const setupDeepgram = (onTranscript) => {
-    // פתיחת חיבור Live ל-Deepgram
     const connection = deepgram.listen.live({
     model: "nova-3",
     language: "he",
     smart_format: true,
-    // הוספת הכתובת המאובטחת במידה והענן חוסם את ברירת המחדל
     url: "wss://api.deepgram.com/v1/listen",
     encoding: "linear16", // או 'webm-opus' אם זה מה שהדפדפן שולח
     sample_rate: 16000
@@ -23,7 +21,6 @@ const setupDeepgram = (onTranscript) => {
     connection.on("results", (data) => {
         const transcript = data.channel.alternatives[0].transcript;
         if (transcript && data.is_final) {
-            // כאן אנחנו מחזירים את הטקסט הסופי למי שקרא לשירות
             onTranscript(transcript);
         }
     });
