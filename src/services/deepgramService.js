@@ -48,7 +48,6 @@
 
 const { createClient } = require("@deepgram/sdk");
 require('dotenv').config();
-
 const deepgram = createClient(process.env.DEEPGRAM_API_KEY);
 
 const setupDeepgram = (onTranscript) => {
