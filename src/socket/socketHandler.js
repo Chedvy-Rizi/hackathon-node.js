@@ -106,7 +106,8 @@ const handleSocketConnections = (io) => {
                         }
 
                         // המרה לקול
-                        const audioBuffer = await googleTTSService.synthesize(aiResponseText);
+                        // const audioBuffer = await googleTTSService.synthesize(aiResponseText);
+                        const audioBuffer = await googleTTSService.generateAudio(aiResponseText);
 
                         // שליחה לריאקט
                         socket.emit('ai-thinking', false);
