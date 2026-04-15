@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@deepgram/sdk": "^5.0.0",
+    "@deepgram/sdk": "^3.13.0",
     "@google-cloud/text-to-speech": "^6.4.0",
     "axios": "^1.15.0",
     "dotenv": "^17.4.2",
